@@ -22,6 +22,7 @@ TEMPLATE_DIRS =(
 
 ALLOWED_HOSTS = []
 
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)).replace('\\','/')
 
 # Application definition
 
@@ -77,15 +78,45 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(ROOT_PATH, 'Static'),
+)
+
 AUTHENTICATION_BACKENDS = (
   'django.contrib.auth.backends.ModelBackend',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-  'django.contrib.auth.context_processors.auth',
-  'django.core.context_processors.debug',
-  'django.core.context_processors.i18n',
-  'django.core.context_processors.media',
-  'django.contrib.messages.context_processors.messages',
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#   'django.contrib.auth.context_processors.auth',
+#   'django.core.context_processors.debug',
+#   'django.core.context_processors.i18n',
+#   'django.core.context_processors.media',
+#   'django.contrib.messages.context_processors.messages',
+# )
+
+from django.conf import global_settings
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "WebSpider.contextprocessor.default",
+    "django.core.context_processors.request",
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+)
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    ROOT_PATH + '/templates'
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
