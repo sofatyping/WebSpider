@@ -7,6 +7,8 @@ urlpatterns = patterns('spidercore.views',
     # Examples:
     url(r'^$', 'startcrawl'),
     url(r'^crawling/?$', 'crawling'),
+	# url(r'^results/?$', 'crawling'),
+	url(r'^about/?$', 'about'),
     )
 
 

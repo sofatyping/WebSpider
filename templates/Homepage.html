@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="web spider">
+    <meta name="author" content="yu xia">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
     <title>Web Spider</title>
@@ -118,13 +118,13 @@
     <div class="alert alert-warning" style="width: 80%; margin-left: auto; margin-right: auto; display: none;">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       Please enter a legel URL or the total levels you want to analysis.</div>
-    <form name="crawl_post" method="post" action="/crawling/" onsubmit="return check_url()">
+    <form name="crawl_post" id="startcrawl" method="post" action="/crawling/" onsubmit="return check_url()">
     {% csrf_token %}   
     <div class="input-group input-group-lg" style="width: 80%; margin-left: auto; margin-right: auto;margin-bottom: 15%;" >
       <input type="text" class="form-control" name="crawlurl" id="crawlurl" style="width: 48%; margin-right: 10px;" placeholder = "The website you want to analysis">
       <input type="text" class="form-control" name="crawllevel" id="crawllevel" style="width: 50%;" placeholder = "The layer you want to analysis">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Go!</button>
+        <button class="btn btn-default" id="subgo" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
       <!-- FOOTER -->
@@ -133,7 +133,6 @@
       </footer>
     </div><!-- /.container -->
     </form>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -147,9 +146,28 @@
           return true;
         } else {
           $(".alert").show();
+          $("#myModal").modal("hide");
           return false;
         }
     }
+    $("#subgo").click(function(){
+      $("#myModal").modal("toggle");
+      $("#startcrawl").submit();
+    });
     </script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 280px;">
+          <div class="modal-body" style="padding: 0px;">
+            <div class="progress progress-striped active" style="margin-bottom:0px;">
+              <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span class="sr-only">45% Complete</span>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
   </body>
 </html>
