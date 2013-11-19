@@ -74,7 +74,7 @@ def crawling(request):
 	else:
 		return HttpResponseRedirect("/")
 
-def crawling(request):
+def about(request):
 	return render_to_response('About.html',
                 {},context_instance=RequestContext(request))
 

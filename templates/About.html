@@ -52,41 +52,9 @@
           </div>
         </div>
         <!--display results-->
-        <table border="1">
-        <tr>
-            <td>layer</td>
-            <td>pages</td>
-        </tr>
-
-        {% for layer, pages in layer.items %}
-            <tr>
-                <td>{{layer}}</td>
-                <td>
-                {% for v in pages %}
-                <p>{{v}}</p>
-                {% endfor %}
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
-        <div><p>Error Analysis:</p></div>
-        <table border="1">
-        <tr>
-            <td>URL</td>
-            <td>Errors</td>
-        </tr>
-
-        {% for URL, errors in error_list.items %}
-            <tr>
-                <td>{{URL}}</td>
-                <td>
-                {% for v in errors %}
-                <p>{{v}}</p>
-                {% endfor %}
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
+        <!--TODO: about the website-->
+        <h1>About</h1>
+        
       </div>
     </div>
     <!-- Bootstrap core JavaScript
